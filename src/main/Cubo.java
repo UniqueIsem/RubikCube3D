@@ -14,6 +14,7 @@ public class Cubo extends JFrame {
     public Cubo() {
         initComponents();
         setSubcube();
+        moveCube();
     }
 
     private void setSubcube() {
@@ -28,12 +29,17 @@ public class Cubo extends JFrame {
         }
     }
 
-    private void dibujar() {
+    private void moveCube() {
         graficos.clear();
+        // Ajuste de traslación del cubo
+        int trasX = 400; // Coordenada X del centro de la ventana
+        int trasY = 300; // Coordenada Y del centro de la ventana
+        int trasZ = -75; // Ajusta según sea necesario para la perspectiva
+
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
                 for (int z = 0; z < 3; z++) {
-                    cuboRubik[x][y][z].dibujar(graficos, 1, anguloX, anguloY, anguloZ, -75, -75, -75);
+                    cuboRubik[x][y][z].dibujar(graficos, 1, anguloX, anguloY, anguloZ, trasX - 75, trasY - 75, trasZ);
                 }
             }
         }
@@ -52,31 +58,31 @@ public class Cubo extends JFrame {
 
         graficos = new Graficos(800, 600);
         add(graficos);
-        
+
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
-                    case KeyEvent.VK_UP:
+                    case KeyEvent.VK_W:
                         anguloX -= 5;
                         break;
-                    case KeyEvent.VK_DOWN:
+                    case KeyEvent.VK_S:
                         anguloX += 5;
                         break;
-                    case KeyEvent.VK_LEFT:
+                    case KeyEvent.VK_D:
                         anguloY -= 5;
                         break;
-                    case KeyEvent.VK_RIGHT:
+                    case KeyEvent.VK_A:
                         anguloY += 5;
                         break;
-                    case KeyEvent.VK_A:
+                    case KeyEvent.VK_J:
                         anguloZ -= 5;
                         break;
-                    case KeyEvent.VK_D:
+                    case KeyEvent.VK_L:
                         anguloZ += 5;
                         break;
                 }
-                dibujar();
+                moveCube();
             }
         });
 
