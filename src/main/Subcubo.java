@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Subcubo {
 
-    private int x, y, z, size;
+    public int x, y, z, size;
     private final double[][] vertices;
     private final int[][] aristas;
     private final Color[] colores;
@@ -40,13 +40,13 @@ public class Subcubo {
             {0, 1, 5, 4}, // bottom
             {2, 3, 7, 6}, // top
             {0, 3, 7, 4}, // left
-            {1, 2, 6, 5}  // right
+            {1, 2, 6, 5} // right
         };
 
         colores = new Color[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.ORANGE, Color.WHITE};
     }
 
-    public void dibujar(Graficos g, double escala, double anguloX, double anguloY, double anguloZ, int trasX, int trasY, int trasZ) {
+    public void dibujar(Graficos g, double escala, double anguloX, double anguloY, double anguloZ, int trasX, int trasY, int trasZ, boolean lines) {
         double[][] rotadas = new double[8][3];
         for (int i = 0; i < 8; i++) {
             rotadas[i] = rotar(vertices[i], anguloX, anguloY, anguloZ);
@@ -77,9 +77,11 @@ public class Subcubo {
                 yPoints[j] = (int) trasladadas[caras[i][j]][1];
             }
             g.fillPolygon(xPoints, yPoints, 4, colores[i]); // Pintar caraas
-            for (int j = 0; j < 4; j++) {
-                int next = (j + 1) % 4;
-                g.drawLine(xPoints[j], yPoints[j], xPoints[next], yPoints[next], Color.BLACK);
+            if (lines) {
+                for (int j = 0; j < 4; j++) {
+                    int next = (j + 1) % 4;
+                    g.drawLine(xPoints[j], yPoints[j], xPoints[next], yPoints[next], Color.BLACK);
+                }
             }
         }
     }
