@@ -6,10 +6,10 @@ import java.util.Arrays;
 public class Subcubo {
 
     private int x, y, z, size;
-    private double[][] vertices;
-    private int[][] aristas;
-    private Color[] colores;
-    private int[][] caras;
+    private final double[][] vertices;
+    private final int[][] aristas;
+    private final Color[] colores;
+    private final int[][] caras;
 
     public Subcubo(int x, int y, int z, int size) {
         this.x = x;
@@ -76,7 +76,7 @@ public class Subcubo {
                 xPoints[j] = (int) trasladadas[caras[i][j]][0];
                 yPoints[j] = (int) trasladadas[caras[i][j]][1];
             }
-            g.fillPolygon(xPoints, yPoints, 4, colores[i]);
+            g.fillPolygon(xPoints, yPoints, 4, colores[i]); // Pintar caraas
             for (int j = 0; j < 4; j++) {
                 int next = (j + 1) % 4;
                 g.drawLine(xPoints[j], yPoints[j], xPoints[next], yPoints[next], Color.BLACK);
@@ -84,7 +84,7 @@ public class Subcubo {
         }
     }
 
-    private double[] rotar(double[] punto, double anguloX, double anguloY, double anguloZ) {
+    public double[] rotar(double[] punto, double anguloX, double anguloY, double anguloZ) {
         double[] resultado = Arrays.copyOf(punto, 3);
         double radX = Math.toRadians(anguloX);
         double radY = Math.toRadians(anguloY);
