@@ -164,6 +164,15 @@ public class Cubo extends JFrame {
                         } else {
                             ejeSubcubo = false;
                         }
+                        break;
+                    case KeyEvent.VK_UP:
+                        size += 5;
+                        setSubcube();
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        size -= 5;
+                        setSubcube();
+                        break;
                 }
                 moverCubo();
             }
@@ -212,6 +221,8 @@ public class Cubo extends JFrame {
                 + "IJKL to rotate.\n"
                 + "SPACE to animate,\n"
                 + "B to set cube lines.\n"
-                + "E to rotate into subcube center.\n");
+                + "E to rotate into subcube center.\n"
+                + "UP and DOWN to scalate."
+        );
     }
 }

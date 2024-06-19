@@ -295,8 +295,7 @@ public class Graficos extends Canvas {
     }
     
     public void clear() {
-        fillRect(0, 0, WIDTH, HEIGHT, Color.BLACK);
-        repaint();
+        fillRect(0, 0, WIDTH, HEIGHT, Color.GRAY);
     }
 
     public BufferedImage getBuffer() {

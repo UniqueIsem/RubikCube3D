@@ -63,7 +63,7 @@ public class Subcubo {
         // Algoritmo del pintor
         double[] profundidades = new double[6];
         for (int i = 0; i < 6; i++) {
-            profundidades[i] = (trasladadas[caras[i][0]][2] + trasladadas[caras[i][1]][2] + trasladadas[caras[i][2]][2] + trasladadas[caras[i][3]][2]) / 4.0;
+            profundidades[i] = (trasladadas[caras[i][0]][2] + trasladadas[caras[i][1]][2] + trasladadas[caras[i][2]][2] + trasladadas[caras[i][3]][2]) / 2.0;
         }
 
         Integer[] indices = {0, 1, 2, 3, 4, 5};
