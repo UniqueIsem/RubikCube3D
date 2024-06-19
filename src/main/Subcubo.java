@@ -43,22 +43,27 @@ public class Subcubo {
             {1, 2, 6, 5}  // right
         };
 
-        colores = new Color[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.ORANGE, Color.MAGENTA};
+        colores = new Color[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.ORANGE, Color.WHITE};
     }
 
     public void dibujar(Graficos g, double escala, double anguloX, double anguloY, double anguloZ, int trasX, int trasY, int trasZ) {
         double[][] rotadas = new double[8][3];
         for (int i = 0; i < 8; i++) {
             rotadas[i] = rotar(vertices[i], anguloX, anguloY, anguloZ);
-            rotadas[i][0] = rotadas[i][0] * escala + x + trasX;
-            rotadas[i][1] = rotadas[i][1] * escala + y + trasY;
-            rotadas[i][2] = rotadas[i][2] * escala + z + trasZ;
+        }
+
+        // Aplicar traslación a los vértices rotados
+        double[][] trasladadas = new double[8][3];
+        for (int i = 0; i < 8; i++) {
+            trasladadas[i][0] = rotadas[i][0] * escala + this.x + trasX;
+            trasladadas[i][1] = rotadas[i][1] * escala + this.y + trasY;
+            trasladadas[i][2] = rotadas[i][2] * escala + this.z + trasZ;
         }
 
         // Algoritmo del pintor
         double[] profundidades = new double[6];
         for (int i = 0; i < 6; i++) {
-            profundidades[i] = (rotadas[caras[i][0]][2] + rotadas[caras[i][1]][2] + rotadas[caras[i][2]][2] + rotadas[caras[i][3]][2]) / 4.0;
+            profundidades[i] = (trasladadas[caras[i][0]][2] + trasladadas[caras[i][1]][2] + trasladadas[caras[i][2]][2] + trasladadas[caras[i][3]][2]) / 4.0;
         }
 
         Integer[] indices = {0, 1, 2, 3, 4, 5};
@@ -68,8 +73,8 @@ public class Subcubo {
             int[] xPoints = new int[4];
             int[] yPoints = new int[4];
             for (int j = 0; j < 4; j++) {
-                xPoints[j] = (int) rotadas[caras[i][j]][0];
-                yPoints[j] = (int) rotadas[caras[i][j]][1];
+                xPoints[j] = (int) trasladadas[caras[i][j]][0];
+                yPoints[j] = (int) trasladadas[caras[i][j]][1];
             }
             g.fillPolygon(xPoints, yPoints, 4, colores[i]);
             for (int j = 0; j < 4; j++) {

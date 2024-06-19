@@ -1,7 +1,5 @@
 package main;
 
-import main.Subcubo;
-
 public class CuboRubik {
 
     private int dimension;
@@ -31,8 +29,8 @@ public class CuboRubik {
     }
 
     public void rotarCaraFrontal(double angulo) {
-        // Rotar la cara frontal del cubo de Rubik
-        // Aquí se puede implementar la lógica para rotar los subcubos en la cara frontal
-        // Actualizar las posiciones de los subcubos en la cara frontal
+        // Implementar la rotación de la cara frontal del cubo Rubik
+        // Aquí se puede agregar la lógica para rotar los subcubos de la cara frontal
+        // Actualizar las posiciones de los subcubos en la cara frontal según sea necesario
     }
 }
